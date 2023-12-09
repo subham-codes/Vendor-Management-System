@@ -2,4 +2,4 @@
 venv/
 manage.py
 db.sqlite3
-migrations
+VendorProfileManagementApp\migrations
