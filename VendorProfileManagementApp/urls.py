@@ -14,6 +14,5 @@ urlpatterns = [
     path('purchase_orders/<str:po_number>/',PurchaseOrderListRetriveUpdateDestroy.as_view(), name = 'purchaseOrder-get-put-delete-view'),
     path('vendors/<str:vendor_code>/performance/',performance_metric, name= 'performance-metric'),
     path('purchase_orders/<str:po_number>/acknowledge/',acknowledge_order, name='acknowledge-order'),
-    path('historical_performance/',HistoricalListCreateView.as_view(),name='historical-post-get-view'),
-    path('historical_performance/<int:id>/',HistoricalListRetriveUpdateDestroy.as_view(),name='historical-get-put-delete-view')
+    path('historical_performance/',HistoricalListCreateView.as_view(),name='historical-post-get-view')
 ]

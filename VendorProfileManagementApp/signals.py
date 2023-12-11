@@ -16,7 +16,7 @@ def calculate_avg_response_time(sender, instance, **kwargs):
             vendor__vendor_code= vendor_id, 
             acknowledgment_date__isnull = False
             )
-        print(query_result.count(), query_result)
+        # print(query_result.count(), query_result)
         
         time_diff_expression = ExpressionWrapper(
             F('acknowledgment_date')-F('issue_date'),output_field=DurationField()
@@ -28,7 +28,7 @@ def calculate_avg_response_time(sender, instance, **kwargs):
         
         average_time_difference = round(average_time_difference, 2)
 
-        print(round(average_time_difference, 2), type(average_time_difference))
+        # print(round(average_time_difference, 2), type(average_time_difference))
         vendor_obj = VendorModel.objects.get(vendor_code = vendor_id)
         vendor_obj.average_response_time = average_time_difference
         vendor_obj.save()
@@ -50,11 +50,11 @@ def cal_on_time_delivery_rate(instance):
         if current_date <= instance.delivery_date:
             instance.delivery_status = 'Y'
             instance.save()
-            print('updated')
+            # print('updated')
         else:
             instance.delivery_status = 'N'
             instance.save()
-            print('updated')
+            # print('updated')
 
         # result for completed orders
         order_query_result = PurchaseOrderModel.objects.filter(
@@ -83,7 +83,7 @@ def cal_quality_rating_avg(instance):
                                 )
         
         if order_query_result.exists():
-            print('updated quality rating')
+            # print('updated quality rating')
             quality_rating_average = order_query_result.aggregate(rating_avg = Avg('quality_rating'))['rating_avg']
             vendor_query_result = VendorModel.objects.get(vendor_code = instance.vendor.vendor_code)
             vendor_query_result.quality_rating_avg = quality_rating_average
@@ -146,7 +146,7 @@ def historical_performance(instance):
 def cal_performance_metric(sender, instance, created, **kwargs):
     
     if instance.status == 'completed' and instance._state.adding is False:
-        print('inside cal_performance_metric')
+        # print('inside cal_performance_metric')
         post_save.disconnect(cal_performance_metric, sender=PurchaseOrderModel)
 
         cal_on_time_delivery_rate(instance)

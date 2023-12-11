@@ -50,12 +50,12 @@ class HistoricalListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# get , put, delete for individual vendor details
-class HistoricalListRetriveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = HistoricalPerformanceModel.objects.all()
-    serializer_class = HistoricalPerformanceModelSerializers
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
+# get , put, delete for individual vendor historical performance
+# class HistoricalListRetriveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = HistoricalPerformanceModel.objects.all()
+#     serializer_class = HistoricalPerformanceModelSerializers
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
 
 
 
